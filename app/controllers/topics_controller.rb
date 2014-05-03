@@ -3,6 +3,12 @@ class TopicsController < ApplicationController
 
   # GET /topics
   # GET /topics.json
+  def upvote 
+    @topic = Topic.find(params[:id])
+    @topic.votes.create
+    redirect_to(topics_path)
+  end
+
   def index
     @topics = Topic.all
   end
@@ -72,3 +78,5 @@ class TopicsController < ApplicationController
       params.require(:topic).permit(:title, :description)
     end
 end
+
+
